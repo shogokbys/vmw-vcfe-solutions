@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-httpserver
+  namespace: machineone
+  labels:
+    app: busybox-webserver
+spec:
+  containers:
+  - name: webserver
+    image: busybox
+    command: ["sh", "-c", "mkdir -p /tmp/html && echo 'Hello from busybox!' > /tmp/html/index.html && httpd -f -p 8080 -h /tmp/html"]
+    ports:
+    - containerPort: 8080
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsNonRoot: true
+      runAsUser: 1000
+      seccompProfile:
+        type: RuntimeDefault
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: busybox-service
+  namespace: machineone
+spec:
+  selector:
+    app: busybox-webserver
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer  
