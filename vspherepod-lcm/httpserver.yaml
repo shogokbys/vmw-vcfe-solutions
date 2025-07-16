@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: busybox-httpserver
-  namespace: machineone
+  namespace: dev-ns
   labels:
     app: busybox-webserver
 spec:
@@ -27,7 +27,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: busybox-service
-  namespace: machineone
+  namespace: dev-ns
 spec:
   selector:
     app: busybox-webserver
