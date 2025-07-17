@@ -16,7 +16,7 @@ spec:
     serviceDomain: cluster.local
   topology:
     class: builtin-generic-v3.3.0
-    version: v1.30.11---vmware.1-fips-vkr.2
+    version: v1.31.1---vmware.2-fips-vkr.2
     variables:
       - name: vmClass
         value: best-effort-small
