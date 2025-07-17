@@ -2,7 +2,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: argocd-vks-cluster
-  namespace: dev-ns
+  namespace: test-ns
   labels:
     tkg-cluster-selector: argocd-vks-cluster
 spec:
